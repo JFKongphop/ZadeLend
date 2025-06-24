@@ -1,0 +1,6 @@
+[submodule "pomwa-contract"]
+	path = contract
+	url = https://github.com/JFKongphop/pomwa-contract.git
+[submodule "ponwa-circuit"]
+	path = circuit
+	url = https://github.com/JFKongphop/pomwa-circuit.git
