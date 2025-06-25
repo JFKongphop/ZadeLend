@@ -10,6 +10,23 @@ ZadeLend is a cross-chain, privacy-preserving lending protocol where users depos
 - Time-locked collateral: NFT is locked on the origin chain for a fixed period.
 - Reward-based incentive: Users are rewarded with USDC on deposit to encourage participation.
 
+## Smart Contract Responsibilities
+
+### NFTDepositor (Chain A)
+- Stores and locks NFTs.
+- Emits NFTDeposit events.
+- Sends commitments cross-chain via Chainlink CCIP.
+- Manages LINK fee balances.
+- Allows user to payback USDC to unlock their NFT.
+
+### Withdraw (Chain B)
+- Maintains a Merkle Tree of commitments.
+- Receives and logs commitments via _ccipReceive().
+- Validates ZK withdrawal via loanWithdraw():
+- Ensures the proof is valid.
+- Checks nullifier not used.
+- Transfers loanAmount in USDC to the user.
+
 ## Overview of the flow
 ![Work Flow](./docs/Zadelend.png)
 
@@ -49,4 +66,4 @@ ZadeLend is a cross-chain, privacy-preserving lending protocol where users depos
 - Ensures the nullifier hasn't been used.
 - Transfers loanAmount USDC to the user.
 
-## Overview the flow
+## 
