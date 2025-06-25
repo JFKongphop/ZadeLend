@@ -19,7 +19,7 @@ ZadeLend is a cross-chain, privacy-preserving lending protocol where users depos
 - Manages LINK fee balances.
 - Allows user to payback USDC to unlock their NFT.
 
-### Withdraw (Chain B)
+### LoanWithdrawer (Chain B)
 - Maintains a Merkle Tree of commitments.
 - Receives and logs commitments via _ccipReceive().
 - Validates ZK withdrawal via loanWithdraw():
@@ -66,4 +66,6 @@ ZadeLend is a cross-chain, privacy-preserving lending protocol where users depos
 - Ensures the nullifier hasn't been used.
 - Transfers loanAmount USDC to the user.
 
-## 
+## Final Summary
+This project implements a trustless, privacy-preserving, cross-chain NFT collateral system.
+It uses Chainlink CCIP for messaging and ZK-SNARKs for anonymous loan withdrawals. The NFT depositor contract locks user assets and rewards them, while the withdrawal contract validates zero-knowledge proofs to release stablecoin loans on a different chain — with no link between the deposit and withdrawal accounts.
