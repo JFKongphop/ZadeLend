@@ -68,6 +68,12 @@ ZadeLend is a cross-chain, privacy-preserving lending protocol where users depos
 - Ensures the nullifier hasn't been used.
 - Transfers loanAmount USDC to the user.
 
+## Future Improvement
+- Dynamic Loan Terms Based on NFT Appraisal
+  Integrate decentralized Asset pricing oracles to offer personalized loan amounts and risk-adjusted interest rates.
+- Multi-Asset Collateral Support
+  Let users deposit ERC20s or multiple NFTs to diversify collateral and reduce over-collateralization risk.
+
 ## Final Summary
 This project implements a trustless, privacy-preserving, cross-chain asets collateral system.
 It uses Chainlink CCIP for messaging and ZK-SNARKs for anonymous loan withdrawals. The asset depositor contract locks user assets and rewards them, while the withdrawal contract validates zero-knowledge proofs to release stablecoin loans on a different chain — with no link between the deposit and withdrawal accounts.
