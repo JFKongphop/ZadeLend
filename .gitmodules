@@ -4,3 +4,6 @@
 [submodule "ponwa-circuit"]
 	path = circuit
 	url = https://github.com/JFKongphop/pomwa-circuit.git
+[submodule "frontend"]
+	path = frontend
+	url = https://github.com/WTCHAI/zadelend-web.git
