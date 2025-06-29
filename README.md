@@ -74,6 +74,37 @@ ZadeLend is a cross-chain, privacy-preserving lending protocol where users depos
 - Multi-Asset Collateral Support
   Let users deposit ERC20s or multiple NFTs to diversify collateral and reduce over-collateralization risk.
 
+## Usage
+
+### Contract
+
+setup env file for rpc and private key
+
+```
+PRIVATE_KEY=""
+SEPOLIA=""
+SCROLL=""
+```
+
+The contract can be deploy on Sepolia with the following command
+
+```bash
+cd contracts
+npm install
+npx hardhat run --network sepolia scripts/nftDepositor.ts
+npx hardhat run --network scroll scripts/loanWithdrawer.ts
+```
+
+### Frontend
+
+The frontend can be run in development mode using
+
+```bash
+cd frontend
+pnpm install
+pnpm dev
+```
+
 ## Final Summary
 This project implements a trustless, privacy-preserving, cross-chain asets collateral system.
 It uses Chainlink CCIP for messaging and ZK-SNARKs for anonymous loan withdrawals. The asset depositor contract locks user assets and rewards them, while the withdrawal contract validates zero-knowledge proofs to release stablecoin loans on a different chain — with no link between the deposit and withdrawal accounts.
