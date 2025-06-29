@@ -74,11 +74,26 @@ ZadeLend is a cross-chain, privacy-preserving lending protocol where users depos
 - Multi-Asset Collateral Support
   Let users deposit ERC20s or multiple NFTs to diversify collateral and reduce over-collateralization risk.
 
+## Contract Address
+
+### Ethereum Sepolia
+| Contract Name   | Contract Address                             |
+|----------------|-----------------------------------------------|
+| NFTDepositor    | `0x12B92D38c380F66f64fA2909E967B386b22CB07A` |
+| NFT             | `0x4B9D25236B30F01edF4D539ae8BDB04CcE029c75` |
+| USDC            | `0xB58f04f651CDd8be01D3eA3266266Ce640C48C61` |
+
+### Scroll Sepolia
+| Contract Name   | Contract Address                             |
+|-----------------|----------------------------------------------|
+| LoanWithdrawer  | `0xf3BbAE47ef0e4A5C2AD77C9e49C9C2d65a0E0554` |
+| USDC            | `0x3832f87b02724D953e08906CaF3C73d84Ef08570` |
+
 ## Usage
 
 ### Contract
 
-setup env file for rpc and private key
+setup .env file for rpc and private key
 
 ```
 PRIVATE_KEY=""
