@@ -1,23 +1,23 @@
 # ZadeLend: Cross-Chain Asset Collateralized Loan with ZK Withdrawal
 
-ZadeLend is a cross-chain, privacy-preserving lending protocol where users deposit NFTs on Ethereum L1 and privately withdraw stablecoin loans on L2. Using zero-knowledge proofs and Chainlink CCIP, the system ensures unlinkable deposits and withdrawals with verifiable execution. Users earn stablecoins instantly upon NFT deposit, then later withdraw loans without revealing which asset they used. All actions are trustless and private — loan amounts are public, but user identities and asset details remain hidden.
+ZadeLend is a cross-chain, privacy-preserving lending protocol where users deposit assets on Ethereum L1 and privately withdraw stablecoin loans on L2. Using zero-knowledge proofs and Chainlink CCIP, the system ensures unlinkable transactions with verifiable execution. Users earn stablecoins instantly upon Asset deposit, then later withdraw loans without revealing which asset they used. All actions are trustless and private — loan amounts are public, but user identities and asset details remain hidden.
 
 ## Key Features
 
-- Privacy-preserving loan withdrawals: Only the proof is public, not which NFT was deposited.
-- Cross-chain communication: Uses Chainlink CCIP for secure message passing.
-- Double-spend prevention: The nullifiers mapping prevents reusing proofs.
-- Time-locked collateral: NFT is locked on the origin chain for a fixed period.
+- Privacy-preserving loan withdrawals: Only the proof is public, not which asset was deposited.
+- Cross-chain communication: Chainlink CCIP for secure message passing.
+- Double-spend prevention: Nullifiers mapping prevents reusing proofs.
+- Time-locked collateral: User assets are locked on the origin chain for a fixed period.
 - Reward-based incentive: Users are rewarded with USDC on deposit to encourage participation.
 
 ## Smart Contract Responsibilities
 
-### NFTDepositor (Chain A)
-- Stores and locks NFTs.
-- Emits NFTDeposit events.
+### AssetDepositor (Chain A)
+- Stores and locks assets.
+- Emits AssetDeposit events.
 - Sends commitments cross-chain via Chainlink CCIP.
 - Manages LINK fee balances.
-- Allows user to payback USDC to unlock their NFT.
+- Allows user to payback USDC to unlock their collateral.
 
 ### LoanWithdrawer (Chain B)
 - Maintains a Merkle Tree of commitments.
@@ -28,19 +28,21 @@ ZadeLend is a cross-chain, privacy-preserving lending protocol where users depos
 - Transfers loanAmount in USDC to the user.
 
 ## Overview of the flow
+![Work Flow](./docs/zeadlend-excalidraw.png)
 ![Work Flow](./docs/Zadelend.png)
 
-### Step 1: Deposit NFT on Chain A (e.g., L1)
+
+### Step 1: Deposit Asset on Chain A (e.g., L1)
 
 #### User
 
-- Approves the contract to transfer their NFT.
+- Approves the contract to transfer their asset.
 - Generates a commitment using their secret and loan amount.
-- Sends the commitment along with their NFT.
+- Submits the commitment along with their asset.
 
 #### Contract
 
-- Locks the NFT.
+- Locks the assets.
 - Sends the commitment to Chain B via Chainlink CCIP.
 - Mints a reward of 100 USDC to the user as a "deposit reward."
 
@@ -49,8 +51,8 @@ ZadeLend is a cross-chain, privacy-preserving lending protocol where users depos
 #### Contract
 
 - Receives the commitment via CCIP.
-- Inserts it into a Merkle Tree (_insert()).
-- Emits LeafCommitment(commitment, leafIndex).
+- Inserts it into a Merkle Tree (`_insert()`).
+- Emits `LeafCommitment(commitment, leafIndex)`.
 
 ### Step 3: User Withdraws Loan Anonymously
 
@@ -67,5 +69,5 @@ ZadeLend is a cross-chain, privacy-preserving lending protocol where users depos
 - Transfers loanAmount USDC to the user.
 
 ## Final Summary
-This project implements a trustless, privacy-preserving, cross-chain NFT collateral system.
-It uses Chainlink CCIP for messaging and ZK-SNARKs for anonymous loan withdrawals. The NFT depositor contract locks user assets and rewards them, while the withdrawal contract validates zero-knowledge proofs to release stablecoin loans on a different chain — with no link between the deposit and withdrawal accounts.
+This project implements a trustless, privacy-preserving, cross-chain asets collateral system.
+It uses Chainlink CCIP for messaging and ZK-SNARKs for anonymous loan withdrawals. The asset depositor contract locks user assets and rewards them, while the withdrawal contract validates zero-knowledge proofs to release stablecoin loans on a different chain — with no link between the deposit and withdrawal accounts.
